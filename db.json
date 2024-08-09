@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "image": "",
+      "price": 18,
+      "name": "Chair",
+      "available": false
+    },
+    {
+      "id": 2,
+      "image": "",
+      "price": 18,
+      "name": "Table",
+      "available": false
+    },
+    {
+      "id": 3,
+      "image": "",
+      "price": 20,
+      "name": "Toy",
+      "available": true
+    },
+    {
+      "id": 4,
+      "image": "",
+      "price": 1,
+      "name": "Comb",
+      "available": false
+    },
+    {
+      "id": 5,
+      "image": "",
+      "price": 15,
+      "name": "Ball",
+      "available": false
+    }
+  ]
+}

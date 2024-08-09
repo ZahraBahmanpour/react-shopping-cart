@@ -1,10 +1,59 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import HomePage from "./pages/HomePage.jsx";
+import Layout from "./layouts/Layout.jsx";
+import ProductsPage, {
+  loader as productsLoader,
+} from "./pages/ProductsPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import ProductDetailsPage, {
+  loader as productLoader,
+} from "./pages/ProductDetailsPage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
+import CartPage from "./pages/CartPage.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    // errorElement: <NotFound />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "/products",
+        element: <ProductsPage />,
+        loader: productsLoader,
+      },
+      {
+        path: "/products/:productId",
+        element: <ProductDetailsPage />,
+        loader: productLoader,
+      },
+      {
+        path: "/about",
+        element: <AboutPage />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);

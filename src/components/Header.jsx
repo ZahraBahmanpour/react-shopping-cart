@@ -1,3 +1,6 @@
+import { NavLink } from "react-router-dom";
+import styles from "./Header.module.css";
+
 export default function Header() {
   return (
     <header className="flex justify-between m-5">
@@ -5,36 +8,64 @@ export default function Header() {
       <nav>
         <menu className="flex gap-4">
           <li>
-            <a
-              href="#"
-              className="hover:text-yellow-600 hover:underline hover:decoration-1"
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-yellow-600 underline decoration-1"
+                  : "hover:text-yellow-600 hover:underline hover:decoration-1"
+              }
             >
               Home
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="#"
-              className="hover:text-yellow-600 hover:underline hover:decoration-1"
+            <NavLink
+              to="/products"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-yellow-600 underline decoration-1"
+                  : "hover:text-yellow-600 hover:underline hover:decoration-1"
+              }
+            >
+              Products
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-yellow-600 underline decoration-1"
+                  : "hover:text-yellow-600 hover:underline hover:decoration-1"
+              }
             >
               About Us
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="#"
-              className="hover:text-yellow-600 hover:underline hover:decoration-1"
-            >
-              Contact Us
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="hover:text-yellow-600 hover:underline hover:decoration-1"
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-yellow-600 underline decoration-1"
+                  : "hover:text-yellow-600 hover:underline hover:decoration-1"
+              }
             >
               Cart
-            </a>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-yellow-600 underline decoration-1"
+                  : "hover:text-yellow-600 hover:underline hover:decoration-1"
+              }
+            >
+              Login
+            </NavLink>
           </li>
         </menu>
       </nav>
