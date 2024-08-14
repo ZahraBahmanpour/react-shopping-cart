@@ -2,35 +2,35 @@
   "products": [
     {
       "id": 1,
-      "image": "",
+      "image": "https://loremflickr.com/640/480/abstract",
       "price": 18,
       "name": "Chair",
       "available": false
     },
     {
       "id": 2,
-      "image": "",
+      "image": "https://loremflickr.com/640/480/nature",
       "price": 18,
       "name": "Table",
       "available": false
     },
     {
       "id": 3,
-      "image": "",
+      "image": "https://loremflickr.com/640/480/cats",
       "price": 20,
       "name": "Toy",
       "available": true
     },
     {
       "id": 4,
-      "image": "",
+      "image": "https://loremflickr.com/640/480/technics",
       "price": 1,
       "name": "Comb",
       "available": false
     },
     {
       "id": 5,
-      "image": "",
+      "image": "https://loremflickr.com/640/480/city",
       "price": 15,
       "name": "Ball",
       "available": false
