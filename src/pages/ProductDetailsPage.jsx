@@ -11,9 +11,10 @@ export default function ProductDetailsPage() {
   } = useLoaderData();
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <h1>{name}</h1>
-      <p>{price}</p>
+      <img src={image} alt={name} width="640" height={"480"} />
+      <p>${price}</p>
     </div>
   );
 }
