@@ -36,7 +36,7 @@ export default function ProductsPage() {
         type="text"
         placeholder="search here..."
         className="p-2 mb-2 border w-1/2"
-        value={searchParams.get("name")}
+        value={searchParams.get("name") ?? ""}
         onChange={(e) =>
           setSearchParams((prev) => {
             if (e.target.value) {
@@ -52,7 +52,7 @@ export default function ProductsPage() {
         Only show available products
         <input
           type="checkbox"
-          checked={searchParams.get("available")}
+          checked={searchParams.get("available") === "true" ? true : false}
           onChange={(e) =>
             setSearchParams((prev) => {
               e.target.checked
