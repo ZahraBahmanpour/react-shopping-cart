@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const { totalCount } = useSelector((store) => store.cart);
   return (
     <header className="flex justify-between m-5">
       <div>Simple Shopping Website</div>
@@ -54,6 +56,7 @@ export default function Header() {
             >
               Cart
             </NavLink>
+            {totalCount ? totalCount : ""}
           </li>
           <li>
             <NavLink

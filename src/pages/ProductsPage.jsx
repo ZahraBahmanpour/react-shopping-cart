@@ -1,6 +1,10 @@
+import { useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard";
 import productService from "../services/productService";
-import { useLoaderData, useSearchParams } from "react-router-dom";
+import { useLoaderData, useLocation, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getProducts } from "../features/product/productSlice";
 
 export async function loader({ request }) {
   // console.log(request);
@@ -10,15 +14,29 @@ export async function loader({ request }) {
 }
 
 export default function ProductsPage() {
-  const { products } = useLoaderData();
+  // const { products } = useLoaderData();
+  const { loading, error, products } = useSelector((store) => store.product);
+  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log();
+  console.log(searchParams.get("available"));
+
+  useEffect(() => {
+    dispatch(getProducts(searchParams));
+  }, [searchParams]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>{error}</div>;
+  }
   return (
     <div className="mt-8 m-5">
       <input
         type="text"
         placeholder="search here..."
         className="p-2 mb-2 border w-1/2"
+        value={searchParams.get("name")}
         onChange={(e) =>
           setSearchParams((prev) => {
             if (e.target.value) {
@@ -34,7 +52,8 @@ export default function ProductsPage() {
         Only show available products
         <input
           type="checkbox"
-          onClick={(e) =>
+          checked={searchParams.get("available")}
+          onChange={(e) =>
             setSearchParams((prev) => {
               e.target.checked
                 ? prev.set("available", e.target.checked)

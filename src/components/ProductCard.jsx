@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
         <h3>{name}</h3>
       </Link>
       <div>${price}</div>
-      <CardButton />
+      <CardButton product={product} />
     </div>
   );
 }
