@@ -5,9 +5,7 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import Layout from "./layouts/Layout.jsx";
-import ProductsPage, {
-  loader as productsLoader,
-} from "./pages/ProductsPage.jsx";
+import ProductsPage from "./pages/ProductsPage-rtkQuery.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import ProductDetailsPage, {
   loader as productLoader,
@@ -17,6 +15,7 @@ import CartPage from "./pages/CartPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import { Provider } from "react-redux";
 import { store } from "./store.js";
+import CreateProductPage from "./pages/CreateProductPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +46,10 @@ const router = createBrowserRouter([
         element: <CartPage />,
       },
     ],
+  },
+  {
+    path: "/create",
+    element: <CreateProductPage />,
   },
   {
     path: "/login",

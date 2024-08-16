@@ -1,6 +1,9 @@
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { clearCart } from "../features/cart/cartSlice";
 
 export default function CartPage() {
+  const dispatch = useDispatch();
   const { cartItems, totalPrice } = useSelector((store) => store.cart);
   return (
     <div>
@@ -13,6 +16,7 @@ export default function CartPage() {
         </div>
       ))}
       <h1>${totalPrice}</h1>
+      <button onClick={() => dispatch(clearCart())}>Clear Cart</button>
     </div>
   );
 }

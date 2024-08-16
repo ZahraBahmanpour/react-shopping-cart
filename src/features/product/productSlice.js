@@ -12,7 +12,7 @@ const initialState = {
 
 export const getProducts = createAsyncThunk(
   "product/readProducts",
-  async (searchParams) => {
+  async (searchParams, { rejectWithValue }) => {
     try {
       const res = await axios.get(
         `${PRODUCTS_URL}${generateQueryParams(searchParams)}`
@@ -20,9 +20,24 @@ export const getProducts = createAsyncThunk(
       return res.data;
     } catch (e) {
       console.log(e);
+      return rejectWithValue(e.message);
     }
   }
 );
+
+export const createProduct = createAsyncThunk(
+  "product/createProduct",
+  async (product, { rejectWithValue }) => {
+    try {
+      const res = await axios.post(`${PRODUCTS_URL}`, { product });
+      return res.data;
+    } catch (e) {
+      console.log(e);
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "product",
   initialState,
@@ -35,6 +50,18 @@ const productSlice = createSlice({
       state.products = action.payload;
     });
     builder.addCase(getProducts.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(createProduct.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(createProduct.fulfilled, (state, action) => {
+      state.loading = false;
+      state.products = action.payload;
+    });
+    builder.addCase(createProduct.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });
