@@ -31,7 +31,6 @@ export const generateQueryParams = (searchParams) => {
   if (available) {
     url.searchParams.set("available", available);
   }
-  console.log(url);
   return url.search;
 };
 

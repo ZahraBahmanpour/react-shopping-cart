@@ -11,7 +11,6 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const product = action.payload;
-      console.log(action.payload);
       const exist = state.cartItems.find((item) => item.id === product.id);
       if (exist) {
         exist.qty += 1;

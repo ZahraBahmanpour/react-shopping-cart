@@ -18,7 +18,6 @@ export default function ProductsPage() {
   const { loading, error, products } = useSelector((store) => store.product);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get("available"));
 
   useEffect(() => {
     dispatch(getProducts(searchParams));
