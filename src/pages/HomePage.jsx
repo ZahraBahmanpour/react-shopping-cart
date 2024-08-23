@@ -1,3 +1,10 @@
+import Checkout from "../components/Checkout";
+
 export default function HomePage() {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      HomePage
+      <Checkout />
+    </div>
+  );
 }
