@@ -14,7 +14,6 @@ export default function LoginPage() {
       await dispatch(login({ username, password })).unwrap();
       navigate("/");
     } catch (e) {
-      console.log("yah yah", e);
       navigate("/login");
     }
   };
