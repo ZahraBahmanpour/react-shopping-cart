@@ -5,7 +5,9 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import Layout from "./layouts/Layout.jsx";
-import ProductsPage from "./pages/ProductsPage.jsx";
+import ProductsPage, {
+  ProductsWithLoader,
+} from "./pages/ProductsPage-customHook.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import ProductDetailsPage, {
   loader as productLoader,
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
       {
         path: "/products/:productId",
         element: <ProductDetailsPage />,
-        loader: productLoader,
+        // loader: productLoader,
       },
       {
         path: "/about",

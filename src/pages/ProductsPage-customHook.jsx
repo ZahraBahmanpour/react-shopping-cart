@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../features/product/productSlice";
 import withLoader from "./withLoader";
+import usePagination from "../hooks/usePagination";
 
 export async function loader({ request }) {
   // console.log(request);
@@ -19,13 +20,24 @@ export async function loader({ request }) {
   return { products };
 }
 
-export default function ProductsPage({
-  data: products,
-  searchParams,
-  setSearchParams,
-}) {
+export default function ProductsPage() {
   // const { products } = useLoaderData();
-  // const { products } = useSelector((store) => store.product);
+  const { loading, error, products } = useSelector((store) => store.product);
+  const [page, toNextPage, toPreviousPage] = usePagination(10);
+
+  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    dispatch(getProducts(searchParams));
+  }, [searchParams]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
@@ -66,6 +78,11 @@ export default function ProductsPage({
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
+      </div>
+      <div>
+        <button onClick={toPreviousPage}>-</button>
+        {page}
+        <button onClick={toNextPage}>+</button>
       </div>
     </div>
   );

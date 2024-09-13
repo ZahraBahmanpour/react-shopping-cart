@@ -17,7 +17,6 @@ export const getProducts = createAsyncThunk(
       const res = await axios.get(
         `${PRODUCTS_URL}${generateQueryParams(searchParams)}`
       );
-      console.log("hfjhsf", res);
       return res.data;
     } catch (e) {
       console.log(e);
